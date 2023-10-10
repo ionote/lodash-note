@@ -52,7 +52,7 @@ function initCloneByTag(object, tag, isDeep) {
 
 function initCloneArray(array) {
   const { length } = array
-  // 可能是为了放置 iframe 的情况
+  // 可能是为了防止 iframe 的情况
   const result = new array.constructor(length)
 
   // Add properties assigned by `RegExp#exec`.
@@ -74,17 +74,21 @@ function initCloneArray(array) {
 function baseClone(value, bitmask, customizer, key, object, stack) {
   let result
 
+  // 位掩码, 两个值相同时, 1 2 4 & 1 2 4-> 值为 true
   // & 与运算符, 两个位都为1时，结果才为1, 否则为0
   const isFull = bitmask & CLONE_SYMBOLS_FLAG // 是否克隆symbol
   const isDeep = bitmask & CLONE_DEEP_FLAG // 是否深拷贝
 
   // 基础类型直接返回
   if (!isObject(value)) {
+    // typeof 非函数或对象
     return value
   }
 
   const isArr = Array.isArray(value) // 是否是数组
   const tag = getTag(value)
+
+  // 初始化 result 对象
   if (isArr) {
     result = initCloneArray(value)
     if (!isDeep) {
