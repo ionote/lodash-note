@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import clone from '@banli17/lodash/clone'
+import _ from 'lodash'
 
 const symbol1 = Symbol('symbol1')
 const symbol2 = clone(symbol1)
@@ -32,4 +33,9 @@ console.log(`------------clone array ---------`)
 const arr1 = [1, 2, 3, 4, 5]
 const arr2 = clone(arr1)
 console.log('arr2', arr2)
+
+const sayA = function () {
+  console.log('a')
+}
+console.log('clone function', _.clone(sayA), _.clone(sayA) === sayA) // false
 </script>
