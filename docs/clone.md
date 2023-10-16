@@ -14,7 +14,7 @@
 1. 基本数据类型：`Number`、`String`、`Boolean`、`Symbol`、`Undefined`、`Null`、`BigInt`
 2. 引用数据类型：`Object`
 
-而引用又包含很多：
+而引用类型又包含很多：
 
 - 包装类型 Number、String、Boolean
 - Object
